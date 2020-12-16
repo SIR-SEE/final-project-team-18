@@ -10,3 +10,5 @@ Created on Wed Dec 16 16:34:22 2020
 print("snälla låt koden funka")
 
 print("hej och hopp nu ska vi få lite hopp")
+
+print("jag orkar inte med detta")
