@@ -8,3 +8,5 @@ Created on Wed Dec 16 16:34:22 2020
 
 #Här skapade jag en ny fil för lite lek (obs!: i spyder)
 print("snälla låt koden funka")
+
+print("hej och hopp nu ska vi få lite hopp")
