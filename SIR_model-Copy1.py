@@ -6,8 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# In[43]:
-
 
 # describe the model
 def deriv(y, t, N, beta, gamma, delta):
@@ -19,7 +17,6 @@ def deriv(y, t, N, beta, gamma, delta):
     return dSdt, dEdt, dIdt, dRdt
 
 
-# In[44]:
 
 
 # describe the parameters
@@ -33,7 +30,6 @@ S0, E0, I0, R0 = N-1, 1, 0, 0  # initial conditions: one infected, rest suscepti
  
 #Rt = R0 * S(t)/Ntot* (1 – b). b = effekt av policy och beteendeförändringar
 
-# In[45]:
 
 
 t = np.linspace(0, 99, 100) # Grid of time points (in days)
@@ -44,7 +40,6 @@ ret = odeint(deriv, y0, t, args=(N, beta, gamma, delta))
 S, E, I, R = ret.T
 
 
-# In[46]:
 
 
 def plotsir(t, S, E, I, R):
@@ -68,8 +63,6 @@ def plotsir(t, S, E, I, R):
 
 
 # plot the graph
-
-# In[47]:
 
 
 
