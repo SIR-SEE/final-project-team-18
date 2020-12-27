@@ -1,6 +1,6 @@
 # In[42]:
 
-#hej
+
 from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,22 +8,23 @@ import matplotlib.pyplot as plt
 
 
 # describe the model
-def deriv(y, t, N, beta, gamma, delta):
+def deriv(y, t, N, beta, gamma, delta,theta):
     S, E, I, R = y
-    dSdt = -beta * S * I / N # S(t) – susceptible (de som är mottagliga för infektion).
-    dEdt = beta * S * I / N - gamma * E
+    dSdt = -beta * S * I / N + theta * R# S(t) – susceptible (de som är mottagliga för infektion).
+    dEdt = beta * S * I / N - gamma * E #Exposed (har blivit utsatta för sjukdomen)
     dIdt = delta * E - gamma * I # I(t) – infected (de som har pågående infektion)
-    dRdt = gamma * I
+    dRdt = gamma * I - theta * R #Removed (tillfrisknar)
     return dSdt, dEdt, dIdt, dRdt
 
 
 
 
 # describe the parameters
-N =  2283 #Totala befolkningen N=s(t)+I(t)+R(t)
-D = 4.0 #infections last four days
-gamma = 1.0 / D #Reoval rate (Hur många som tillfrisknar)
+N =  7500 #Totala befolkningen N=s(t)+I(t)+R(t)
+D = 7 #Hur länge infektionen varar
+gamma = 1.0 / D #Removal (hur många som tillfrisknar per dag)
 delta = 1.0 / 5.0 #incubation period of five days
+theta = 0.01 / D #tidigarer immuna som insjuknar igen
 R_0 = 2.5 #Reproduktionstalet  
 beta = R_0 * gamma #r_0=beta/gamma. antal som smittas per infekterad och per tid (beror på virusets egenskaper samt hur vi beter oss).  
 S0, E0, I0, R0 = N-1, 1, 0, 0  # initial conditions: one infected, rest susceptible
@@ -32,11 +33,11 @@ S0, E0, I0, R0 = N-1, 1, 0, 0  # initial conditions: one infected, rest suscepti
 
 
 
-t = np.linspace(0, 99, 100) # Grid of time points (in days)
+t = np.linspace(0, 999, 1000) # Grid of time points (in days)
 y0 = S0, E0, I0, R0 # Initial conditions vector
  
 # Integrate the SIR equations over the time grid, t.
-ret = odeint(deriv, y0, t, args=(N, beta, gamma, delta))
+ret = odeint(deriv, y0, t, args=(N, beta, gamma, delta,theta))
 S, E, I, R = ret.T
 
 
