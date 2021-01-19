@@ -20,8 +20,8 @@ def deriv(y, t, N, beta, gamma, delta):
 
 
 # describe the parameters
-N =  2283 #Totala befolkningen N=s(t)+I(t)+R(t)
-D = 4.0 #infections last four days
+N =  5000 #Totala befolkningen N=s(t)+I(t)+R(t)
+D = 14.0 #infections last four days
 gamma = 1.0 / D #Reoval rate (Hur många som tillfrisknar)
 delta = 1.0 / 5.0 #incubation period of five days
 R_0 = 2.5 #Reproduktionstalet  
@@ -31,8 +31,12 @@ S0, E0, I0, R0 = N-1, 1, 0, 0  # initial conditions: one infected, rest suscepti
 #Rt = R0 * S(t)/Ntot* (1 – b). b = effekt av policy och beteendeförändringar
 
 
+<<<<<<< Updated upstream
 
 t = np.linspace(0, 99, 100) # Grid of time points (in days)
+=======
+t = np.linspace(0, 199, 200) # Grid of time points (in days)
+>>>>>>> Stashed changes
 y0 = S0, E0, I0, R0 # Initial conditions vector
  
 # Integrate the SIR equations over the time grid, t.
